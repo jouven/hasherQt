@@ -10,7 +10,7 @@
 #include <QFileInfo>
 #include <QString>
 #include <QCommandLineParser>
-#include <QThread>
+//#include <QThread>
 
 namespace
 {
@@ -56,17 +56,20 @@ int main(int argc, char *argv[])
         }
 
         eines::hasher_c::inputType_ec inputType;
+        QString inputTypeStr;
         if (parser.isSet("i"))
         {
             while (true)
             {
                 if (parser.value("i") == "file")
                 {
+                    inputTypeStr = "file";
                     inputType = eines::hasher_c::inputType_ec::file;
                     break;
                 }
                 if (parser.value("i") == "string")
                 {
+                    inputTypeStr = "string";
                     inputType = eines::hasher_c::inputType_ec::string;
                     break;
                 }
@@ -76,6 +79,7 @@ int main(int argc, char *argv[])
         }
         else
         {
+            inputTypeStr = "file";
             inputType = eines::hasher_c::inputType_ec::file;
             //eines::baseClassQt_c::appendError_f(errorStr, "Input type option, -i, not set");
         }
@@ -152,7 +156,7 @@ int main(int argc, char *argv[])
 
         for (const QString& inputStr_ite_con : parsedPositionalArgs)
         {
-            qtOutRef_ext() << "\nInput: " <<inputStr_ite_con << endl;
+            qtOutRef_ext() << "\nInput (" << inputTypeStr << "): " <<inputStr_ite_con << "\n";
             eines::hasher_c hasherObj(inputType, inputStr_ite_con, outputType, hashType);
             hasherObj.generateHash_f();
             if (hasherObj.anyError_f())
@@ -163,11 +167,11 @@ int main(int argc, char *argv[])
             {
                 if (hasherObj.hashNumberResultSet_f())
                 {
-                    qtOutRef_ext() << "Hash number: " << hasherObj.hashNumberResult_f() << endl;
+                    qtOutRef_ext() << "Hash number: " << hasherObj.hashNumberResult_f() << "\n";
                 }
                 if (hasherObj.hashStringResultSet_f())
                 {
-                    qtOutRef_ext() << "Hash string: " << QString::fromStdString(hasherObj.hashStringResult_f()) << endl;
+                    qtOutRef_ext() << "Hash string: " << QString::fromStdString(hasherObj.hashStringResult_f()) << "\n";
                 }
             }
         }
@@ -181,7 +185,7 @@ int main(int argc, char *argv[])
 
     if (not errorStr.isEmpty())
     {
-        qtOutRef_ext() << "Errors:\n" << errorStr << endl;
+        qtOutRef_ext() << "Errors:\n" << errorStr << "\n";
         return EXIT_FAILURE;
     }
 
