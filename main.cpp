@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationVersion("1.0");
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("hasherQt description");
+    parser.setApplicationDescription("hasherQt is a program to generate hash values");
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument("input/s", "Filename/s or string/s to hash");
@@ -46,6 +46,7 @@ int main(int argc, char *argv[])
         {
 
             eines::baseClassQt_c::appendError_f(errorStr, "No input to hash provided");
+            eines::baseClassQt_c::appendError_f(errorStr, parser.helpText());
             break;
         }
 

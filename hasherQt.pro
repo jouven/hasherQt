@@ -6,7 +6,7 @@ QMAKE_CXXFLAGS += -std=c++17
 
 TARGET = hasherQt
 CONFIG += console
-CONFIG -= app_bundle
+CONFIG -= no_keywords
 
 TEMPLATE = app
 
