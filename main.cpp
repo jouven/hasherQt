@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     parser.addPositionalArgument("input/s", "Filename/s or string/s to hash");
 
     parser.addOption({"i", R"(file or string)", "Input type", "file"});
-    parser.addOption({"o", R"(number, hex or base64)", "Output type", "number"});
+    parser.addOption({"o", R"(decimal, hexadecimal or base64)", "Output type", "decimal"});
     parser.addOption({"a", R"(crc32c, xxhash, SHA256, Whirlpool)", "Hash type", "xxhash"});
 
     //Process the actual command line arguments given by the user
@@ -90,19 +90,24 @@ int main(int argc, char *argv[])
         {
             while (true)
             {
-                if (parser.value("o") == "number")
+//                if (parser.value("o") == "unsigned64bitInteger")
+//                {
+//                    outputType = eines::hasher_c::outputType_ec::unsigned64bitInteger;
+//                    break;
+//                }
+                if (parser.value("o") == "decimal")
                 {
-                    outputType = eines::hasher_c::outputType_ec::number;
+                    outputType = eines::hasher_c::outputType_ec::decimalString;
                     break;
                 }
-                if (parser.value("o") == "hex")
+                if (parser.value("o") == "hexadecimal")
                 {
-                    outputType = eines::hasher_c::outputType_ec::hex;
+                    outputType = eines::hasher_c::outputType_ec::hexadecimalString;
                     break;
                 }
                 if (parser.value("o") == "base64")
                 {
-                    outputType = eines::hasher_c::outputType_ec::base64;
+                    outputType = eines::hasher_c::outputType_ec::base64String;
                     break;
                 }
                 eines::baseClassQt_c::appendError_f(errorStr, "Wrong output type value");
@@ -111,7 +116,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-            outputType = eines::hasher_c::outputType_ec::number;
+            outputType = eines::hasher_c::outputType_ec::unsigned64bitInteger;
             //eines::baseClassQt_c::appendError_f(errorStr, "Output type option, -o, not set");
         }
 
@@ -166,10 +171,10 @@ int main(int argc, char *argv[])
             }
             else
             {
-                if (hasherObj.hashNumberResultSet_f())
-                {
-                    qtOutRef_ext() << "Hash number: " << hasherObj.hashNumberResult_f() << "\n";
-                }
+//                if (hasherObj.hashNumberResultSet_f())
+//                {
+//                    qtOutRef_ext() << "Hash number: " << hasherObj.hashNumberResult_f() << "\n";
+//                }
                 if (hasherObj.hashStringResultSet_f())
                 {
                     qtOutRef_ext() << "Hash string: " << QString::fromStdString(hasherObj.hashStringResult_f()) << "\n";
