@@ -1,5 +1,5 @@
 # hasherQt
-Console application to generate hashes. Input: string/s, file/s. Outputs: number (for hashes that fit in a 64bit number), hex and base64. Hash types: crc32c, xxhash, whirlpool and SHA256
+Console application to generate hashes. Input: string/s, file/s. Output: decimal, hex and base64. Hash types: crc32c, xxhash, whirlpool and SHA256
 
 Compilation
 -----------
@@ -28,4 +28,4 @@ Command line usage
     
 File explorer usage
 -------------------
-Drag and drop the file/s into hasherQt, defaults to file input, hex output and hash xxhash
+Drag and drop the file/s into hasherQt, defaults to file input, hex output and xxhash hash
