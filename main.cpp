@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-            outputType = eines::hasher_c::outputType_ec::unsigned64bitInteger;
+            outputType = eines::hasher_c::outputType_ec::decimalString;
             //eines::baseClassQt_c::appendError_f(errorStr, "Output type option, -o, not set");
         }
 
