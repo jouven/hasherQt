@@ -1,7 +1,7 @@
 
 #include "essentialQtso/essentialQt.hpp"
 #include "baseClassQtso/baseClassQt.hpp"
-#include "criptoQtso/hashQt.hpp"
+#include "cryptoQtso/hashQt.hpp"
 //#include "signalso/signal.hpp"
 
 #include <QCoreApplication>
