@@ -45,18 +45,18 @@ int main(int argc, char *argv[])
         if (parsedPositionalArgs.size() < 1)
         {
 
-            eines::baseClassQt_c::appendError_f(errorStr, "No input to hash provided");
-            eines::baseClassQt_c::appendError_f(errorStr, parser.helpText());
+            baseClassQt_c::appendError_f(errorStr, "No input to hash provided");
+            baseClassQt_c::appendError_f(errorStr, parser.helpText());
             break;
         }
 
         QString inputStr(parsedPositionalArgs.at(0));
         if (inputStr.isEmpty())
         {
-            eines::baseClassQt_c::appendError_f(errorStr, "Input is empty");
+            baseClassQt_c::appendError_f(errorStr, "Input is empty");
         }
 
-        eines::hasher_c::inputType_ec inputType;
+        hasher_c::inputType_ec inputType;
         QString inputTypeStr;
         if (parser.isSet("i"))
         {
@@ -65,94 +65,94 @@ int main(int argc, char *argv[])
                 if (parser.value("i") == "file")
                 {
                     inputTypeStr = "file";
-                    inputType = eines::hasher_c::inputType_ec::file;
+                    inputType = hasher_c::inputType_ec::file;
                     break;
                 }
                 if (parser.value("i") == "string")
                 {
                     inputTypeStr = "string";
-                    inputType = eines::hasher_c::inputType_ec::string;
+                    inputType = hasher_c::inputType_ec::string;
                     break;
                 }
-                eines::baseClassQt_c::appendError_f(errorStr, "Wrong input type value");
+                baseClassQt_c::appendError_f(errorStr, "Wrong input type value");
                 break;
             }
         }
         else
         {
             inputTypeStr = "file";
-            inputType = eines::hasher_c::inputType_ec::file;
-            //eines::baseClassQt_c::appendError_f(errorStr, "Input type option, -i, not set");
+            inputType = hasher_c::inputType_ec::file;
+            //baseClassQt_c::appendError_f(errorStr, "Input type option, -i, not set");
         }
 
-        eines::hasher_c::outputType_ec outputType;
+        hasher_c::outputType_ec outputType;
         if (parser.isSet("o"))
         {
             while (true)
             {
 //                if (parser.value("o") == "unsigned64bitInteger")
 //                {
-//                    outputType = eines::hasher_c::outputType_ec::unsigned64bitInteger;
+//                    outputType = hasher_c::outputType_ec::unsigned64bitInteger;
 //                    break;
 //                }
                 if (parser.value("o") == "decimal")
                 {
-                    outputType = eines::hasher_c::outputType_ec::decimalString;
+                    outputType = hasher_c::outputType_ec::decimalString;
                     break;
                 }
                 if (parser.value("o") == "hexadecimal")
                 {
-                    outputType = eines::hasher_c::outputType_ec::hexadecimalString;
+                    outputType = hasher_c::outputType_ec::hexadecimalString;
                     break;
                 }
                 if (parser.value("o") == "base64")
                 {
-                    outputType = eines::hasher_c::outputType_ec::base64String;
+                    outputType = hasher_c::outputType_ec::base64String;
                     break;
                 }
-                eines::baseClassQt_c::appendError_f(errorStr, "Wrong output type value");
+                baseClassQt_c::appendError_f(errorStr, "Wrong output type value");
                 break;
             }
         }
         else
         {
-            outputType = eines::hasher_c::outputType_ec::decimalString;
-            //eines::baseClassQt_c::appendError_f(errorStr, "Output type option, -o, not set");
+            outputType = hasher_c::outputType_ec::decimalString;
+            //baseClassQt_c::appendError_f(errorStr, "Output type option, -o, not set");
         }
 
-        eines::hasher_c::hashType_ec hashType;
+        hasher_c::hashType_ec hashType;
         if (parser.isSet("a"))
         {
             while (true)
             {
                 if (parser.value("a") == "crc32c")
                 {
-                    hashType = eines::hasher_c::hashType_ec::crc32c;
+                    hashType = hasher_c::hashType_ec::crc32c;
                     break;
                 }
                 if (parser.value("a") == "xxhash")
                 {
-                    hashType = eines::hasher_c::hashType_ec::XXHASH64;
+                    hashType = hasher_c::hashType_ec::XXHASH64;
                     break;
                 }
                 if (parser.value("a") == "SHA256")
                 {
-                    hashType = eines::hasher_c::hashType_ec::SHA256;
+                    hashType = hasher_c::hashType_ec::SHA256;
                     break;
                 }
                 if (parser.value("a") == "Whirlpool")
                 {
-                    hashType = eines::hasher_c::hashType_ec::whirlpool;
+                    hashType = hasher_c::hashType_ec::whirlpool;
                     break;
                 }
-                eines::baseClassQt_c::appendError_f(errorStr, "Wrong hash type value");
+                baseClassQt_c::appendError_f(errorStr, "Wrong hash type value");
                 break;
             }
         }
         else
         {
-            hashType = eines::hasher_c::hashType_ec::XXHASH64;
-            //eines::baseClassQt_c::appendError_f(errorStr, "Hash type option, -h, not set");
+            hashType = hasher_c::hashType_ec::XXHASH64;
+            //baseClassQt_c::appendError_f(errorStr, "Hash type option, -h, not set");
         }
 
         if (not errorStr.isEmpty())
@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
         for (const QString& inputStr_ite_con : parsedPositionalArgs)
         {
             qtOutRef_ext() << "\nInput (" << inputTypeStr << "): " <<inputStr_ite_con << "\n";
-            eines::hasher_c hasherObj(inputType, inputStr_ite_con, outputType, hashType);
+            hasher_c hasherObj(inputType, inputStr_ite_con, outputType, hashType);
             hasherObj.generateHash_f();
             if (hasherObj.anyError_f())
             {
@@ -197,7 +197,7 @@ int main(int argc, char *argv[])
 
 //    {
 //        qtOutRef_ext() << "\nPress control+C or send a SIGTERM to exit" << endl;
-//        while (eines::signal::isRunning_f())
+//        while (signal::isRunning_f())
 //        {
 //            QThread::sleep(1);
 //        }
